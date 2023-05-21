@@ -1,0 +1,124 @@
+
+// side bars
+.top-bar{
+    @include get-vertical-align;
+    column-gap: 20px;
+    justify-content: space-around;
+
+    .item{
+        @include default-btn-gray;
+        font-size: 14px;
+        border-radius: 10px;
+        padding: 10px;
+        &:hover{
+            background-color: $color-light-gray-hover;
+        }
+    }
+    .active{
+        background-color: white;
+        color: $color-dark-gray;
+    }
+
+    .arrow{
+        background: transparent;
+        padding: 13px 15px;
+        border-radius: 50px;
+    }
+    
+
+}
+
+.side-bar{
+    overflow: hidden;
+    .saction{
+        border-bottom: 1px solid $color-border-gray;
+        width: 280px;
+        padding: 10px 0;
+    }
+
+
+    .item{
+        @include get-vertical-align;
+        font-size: 14px;
+        font-weight: 400;
+        padding: 10px 13px;
+        border-radius: 10px;
+        cursor: pointer;
+        &:hover{
+            background: $color-dark-gray;
+        }
+        .icon{
+            font-size: 25px;
+            margin-right: 25px;
+        }
+    }
+    .active {
+        background: $color-dark-gray;
+    }
+
+
+
+
+    .signin-saction {
+
+
+        .signup{
+            @include get-vertical-align;
+            border: 1px solid $color-dark-gray;
+            padding: 10px 20px;
+            border-radius: 50px;
+            color:$accent-color-blue;
+            font-weight: 500;
+            font-size: 18px;
+            width: 140px;
+            &:hover{
+                background-color: $accent-color-blue-hover;
+            }
+            .icon {
+                font-size: 24px;
+                margin-right: 10px;
+                border:1px solid $accent-color-blue;
+                border-radius: 50%
+            }
+
+        }
+
+
+        .text {
+            padding: 10px 13px;
+            width: 220px;
+            line-height: 20px;
+        }
+
+    }
+
+
+
+}
+
+.slide{
+    background-color: rgb(0, 0, 0, 0.6);
+    position: absolute;
+    top:50px;
+    width: 100%;
+    z-index: 99;
+    display: none;
+    .slide-sidebar{
+        @extend .side-bar;
+        background-color: $background-dark;
+        width: 300px;
+        height: 100vh;
+        padding-left: 10px;
+        position: absolute;
+    }
+    .rest-area{
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
+.container-lock{
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}

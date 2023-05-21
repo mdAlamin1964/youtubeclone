@@ -1,0 +1,25 @@
+// dynamic side bar
+.mini-side-bar  .item{
+    display: block;
+    width: 80px;
+    font-size: 10px;
+    text-align: center;
+    padding: 20px 0;
+    .icon{
+        display: block;
+        margin: auto;
+        font-size: 20px;
+        margin-bottom: 7px;
+
+    }
+}
+
+.mini-side-bar  .signin-saction {
+    display: none;
+}
+
+
+.main-saction-mini-side-bar{
+    grid-template-columns: 80px auto;
+    column-gap: 40px;
+}

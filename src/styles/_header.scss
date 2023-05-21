@@ -1,0 +1,210 @@
+.header {
+
+    padding: 7px 15px;
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    align-items: center;
+
+    // sign up //
+    .header-singup {
+        @include get-gird(auto auto);
+        justify-content: right;
+        column-gap: 10px;
+
+        .more {
+            @include default-btn-gray;
+            @include tooltip-style("header-singup-more-tooltip");
+            background-color: transparent;
+            display: inline-block;
+            padding: 0;
+            height: 20px;
+        }
+
+        .signup {
+            @include get-vertical-align;
+            border: 1px solid $color-dark-gray;
+            padding: 10px 15px;
+            border-radius: 50px;
+            color:$accent-color-blue;
+            font-weight: 500;
+            font-size: 18px;
+            margin: auto;
+
+            &:hover{
+                background-color: $accent-color-blue-hover;
+            }
+            .icon {
+                font-size: 24px;
+                margin-right: 10px;
+                border:1px solid $accent-color-blue;
+                border-radius: 50%;
+            }
+
+            
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Header search //
+    .header-search {
+        @include get-gird(88% 10%);
+        column-gap: 20px;
+        .search{
+            @include get-gird(90% 10%);
+            .back-icon {
+                display: none;
+            }
+            .search-input {
+                @include get-vertical-align;
+                .input-bar {
+                    background-color: transparent;
+                    border:none;
+                    color:$color-white;
+                    font-size: 20px;
+                    width: 100%;
+                    border: 1px solid $color-border-gray;
+                    border-radius: 50px 0 0 50px;
+                    height: 45px;
+                    padding: 0 15px;
+                    padding-left: 15px;
+                    &:focus{
+                        border: 1px solid $accent-color-blue;
+                    }
+                }
+
+                .search-input-icon {
+                    position: absolute;
+                    margin-left: 5px;
+                    height: 20px;
+                    opacity: 0;
+                    .icon {
+                        width: 35px;
+                        height: 20px;
+                    }
+                }
+               
+            }
+
+            .search-btn{
+                @include default-btn-gray;
+                @include tooltip-style("search-btn-tooltip");
+                width: 70px;
+                border-radius: 0 50px 50px 0;
+                height: 45px;
+                border: 1px solid $color-border-gray;
+                border-left: none;
+            }
+
+        }
+
+
+        .voice-search {
+            padding-left: 20px;
+            .voice{
+                @include default-btn-gray;
+                @include tooltip-style("voice-search-tooltip", 160px);
+                border-radius: 50px;
+                width: 45px;
+                height: 45px;
+                font-size: 16px;
+                text-align: center;
+                padding: 12px;
+                background-color: #181818;
+            }
+        }
+
+    }
+
+
+
+
+
+    // logo bar //
+    .header-logo-bar {
+        @include get-vertical-align;
+        width: 200px;
+        .icon{
+            color:$color-white;
+            border-radius: 50%;
+            width: 33px;
+            height: 33px;
+            padding: 5px;
+            &:hover {
+                background-color: $color-light-gray-hover;
+            }
+        }
+
+        .logo{
+            @include tooltip-style("logo-tooltip", 120px);
+            float: left;
+            padding-left: 20px;
+            position: relative;
+            .logo-img {
+                width: 110px;
+            }
+            .country {
+                color: $color-gray;
+                font-size: 12px;
+                position: absolute;
+                right: -25px;
+                top: -8px
+            }
+        }
+
+
+    }
+
+        
+}
+
+
+
+
+// settings menu
+.settings-menu{
+    position: absolute;
+    background-color: $color-dark-gray;
+    text-align: left;
+    z-index: 999;
+    border-radius: 10px;
+    right: 0;
+    top:40px;
+    width: 320px;
+    font-size: 14px;
+
+    .settings-menu-item {
+        @include get-gird(auto auto);
+        justify-content: left;
+        padding: 15px 20px;
+
+        .icon {
+            margin-right: 20px;
+            font-size: 20px;
+        }
+    }
+
+    .your-data{
+        border-bottom: 1px solid $color-light-gray-hover;
+    }
+
+    .settings-settings{
+        border-top: 1px solid $color-light-gray-hover;
+    }    
+
+
+}

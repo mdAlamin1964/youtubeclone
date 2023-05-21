@@ -1,0 +1,93 @@
+.mobile-header {
+    @include get-gird(20% 80%);
+    justify-content: left;
+    .mobile-left {
+
+        .mobile-logo-bar{
+            @include get-vertical-align;
+
+            .mobile-burcumb-icon{
+
+                .icon{
+                    color:$color-white;
+                    border-radius: 50%;
+                    width: 33px;
+                    height: 33px;
+                    padding: 5px;
+                    &:hover {
+                        background-color: $color-light-gray-hover;
+                    }
+                }
+            }
+
+
+
+            .mobile-logo {
+                @include tooltip-style("logo-tooltip", 120px);
+                float: left;
+                padding-left: 15px;
+                position: relative;
+                .mobile-logo-img  {
+                    width: 90px;
+                }
+                .mobile-country {
+                    color: $color-gray;
+                    font-size: 10px;
+                    position: absolute;
+                    right: -15px;
+                    top: -8px
+                }
+            }
+        }
+    }
+
+    .mobile-right{
+        @include get-gird-repeat(4, auto);
+        @include get-vertical-align;
+        justify-self: right;
+        .search-btn{
+            @include default-btn-gray;
+            @include tooltip-style("search-btn-tooltip");
+            height: 45px;
+            background: transparent;
+        }
+
+        .voice {
+            @include default-btn-gray;
+            @include tooltip-style("voice-search-tooltip", 160px);
+            background: $color-dark-gray;
+            padding: 8px 10px;
+        }
+
+        .more{
+            @include default-btn-gray;
+            @include tooltip-style("header-singup-more-tooltip");
+            height: 45px;
+            background: transparent;
+        }
+
+        .signup{
+            @include get-vertical-align;
+            border: 1px solid $color-dark-gray;
+            padding: 10px 15px;
+            border-radius: 50px;
+            color:$accent-color-blue;
+            font-weight: 500;
+            font-size: 18px;
+            margin: auto;
+
+            &:hover{
+                background-color: $accent-color-blue-hover;
+            }
+            .icon {
+                font-size: 24px;
+                margin-right: 10px;
+                border:1px solid $accent-color-blue;
+                border-radius: 50%;
+            }
+        }
+
+    }
+
+
+}

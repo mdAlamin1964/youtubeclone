@@ -1,0 +1,149 @@
+$font-color-dark: #fff;
+$font-color-light: #000;
+$background-dark:#0f0f0f;
+$background-light: #ffffff;
+$color-white: #ffffff;
+$color-gray: #a5a5a5;
+$color-border-gray: #303030;
+$color-dark-gray: #222222;
+$color-light-gray: #272727;
+$accent-color-blue: #067ee7;
+$accent-color-blue-hover: #263850;
+$default-header-item-height: 45px;
+$color-youtube-red: #ff0000;
+
+//responsive
+$mobile-width: 780px;
+$laptop-width: 1540px;
+$laptop-main-width: 1300px;
+$tab-width: 1100px;
+// hovers:
+$color-light-gray-hover: #3f3f3f;
+
+
+
+
+
+
+
+
+// website color mood
+@mixin color-mood($dark){
+    @if $dark == "dark"{
+        background: $background-dark;
+        color: $font-color-dark;
+    } 
+    @else {
+        background: $background-light;
+        color: $font-color-light;
+    }
+}
+
+
+// gird dispay with width justify
+@mixin get-gird($witds){
+    display: grid;
+    grid-template-columns: $witds;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin get-gird-repeat($times, $length) {
+    display: grid;
+    grid-template-columns: repeat($times, $length);
+}
+
+
+
+
+
+// default button
+@mixin default-btn-gray() {
+    background-color: $color-dark-gray;
+    border: none;
+    padding: 10px;
+    color:white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+
+// get virical align
+@mixin get-vertical-align(){
+    display: flex;
+    align-items: center;
+}
+
+
+
+// Responsive
+@mixin get-mobile-responsive {
+    @media screen and (max-width:$mobile-width) {
+        @content;
+    }
+}
+
+// Laptop responsive
+@mixin get-laptop-responsive {
+    @media screen and (max-width:$laptop-width) {
+        @content;
+    }
+}
+
+
+// Laptop main responsive
+@mixin get-laptop-main-responsive{
+    @media screen and (max-width: $laptop-main-width){
+        @content;
+    }
+}
+
+// Laptop Tab responsive
+@mixin get-tab-responsive{
+    @media screen and (max-width: $tab-width){
+        @content;
+    }
+}
+
+
+
+
+// show / hide
+
+.show{
+    display: block;
+}
+
+.hide{
+    display: none;
+}
+
+
+
+// tooltip style
+@mixin tooltip-style ($className, $tooltip-width: auto){
+    position: relative;
+    &:hover .#{$className} {
+        display: inline-block;
+        width: $tooltip-width;
+    }
+    .#{$className} {
+        background-color: rgb(87, 87, 87, 0.8);
+        border: none;
+        padding: 10px;
+        color: white;
+        font-size: 18px;
+        font-size: 14px;
+        border-radius: 5px;
+        padding: 8px 5px;
+        margin-top: 20px;
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        margin-top: 60px;
+        transform: translate(-50%, -50%);
+        display: none;
+    }
+}

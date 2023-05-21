@@ -1,0 +1,116 @@
+.main-saction{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    padding: 10px 10px;
+    padding-right: 30px;
+
+}
+
+
+
+.video-area{
+    margin-top: 20px;
+    .video-main{
+        @include get-gird-repeat(4, 24%);
+        column-gap: 20px;
+        .items{
+            overflow: hidden;
+
+
+            .video-thumbnail{
+                border-radius: 15px;
+                overflow: hidden;
+                position: relative;
+                width: 100%;
+                height: 210px;
+
+                img{
+                    width: 100%;
+                    height: inherit;
+                    position: absolute;
+                }
+
+                .video-run-time{
+                    z-index: 22;
+                    position: absolute;
+                    bottom: 5px;
+                    right: 5px;
+                    background-color: black;
+                    padding: 1px 5px;
+                    font-size: 13px;
+                    border-radius: 5px;
+                }
+
+                .video-top-left{
+                    @include get-vertical-align;
+                    z-index: 22;
+                    position: absolute;
+                    top: 5px;
+                    right: 5px;
+                    background-color: rgb(0, 0, 0, 0.5);
+                    padding: 1px 5px;
+                    font-size: 16px;
+                    border-radius: 5px;
+                    opacity: 0;
+                }
+                &:hover .video-top-left{
+                    opacity: 1;
+                }
+            }
+
+
+
+            .video-details{
+                padding: 10px 0;
+                @include get-gird(40px 270px);
+                align-items: start;
+                justify-content: left;
+                column-gap: 10px;
+                .video-channel-thumb{
+                    border-radius: 50px;
+                    text-align: center;
+                    img{
+                        width: 100%;
+                        min-width: 40px;
+                        border-radius: 50%;
+                    }
+                }
+
+
+
+                .video-datails-text{
+                    .title{
+                        font-size: 16px;
+                        font-weight: 500;
+                        margin-bottom: 5px;
+                    }
+                    
+                    .channel{
+                        font-size:14px;
+                        font-weight: 400;
+                        color: $color-gray;
+                        cursor: pointer;
+                        &:hover {
+                            color:white;
+
+                        }
+                    }
+
+                    .time-views{
+                        @extend .channel;
+                        @include get-vertical-align;
+                    }
+                }
+
+            }
+
+
+
+
+        }
+    }
+}
+
+
+
+
