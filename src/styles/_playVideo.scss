@@ -1,0 +1,250 @@
+.playvideo-main{
+    position: absolute;
+    top: 70px;
+    right: 0;
+    z-index: 9999;
+    width: 100%;
+    background-color: $background-dark;
+    padding: 0 3%;
+}
+
+
+.playarea{
+    display: grid;
+    grid-template-columns: 75% 25%;
+    column-gap: 10px;
+    margin-top: 25px;
+    .playarea-right{
+        .back-btn{
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+            position: absolute;
+            left: 10px;
+            height: 35px;
+            width: 35px;
+            padding: 5px;
+            top:-10px;
+            border-radius: 50%;border: 1px solid transparent;
+            &:hover{
+                border: 1px solid $color-light-gray-hover;
+            }
+        }
+
+        .playarea-video-box{
+            width: 100%;
+            position: relative;
+
+            &:hover .icon{
+                display: block;
+            }
+            .video-play-box{
+                width: 100% !important;
+                height: inherit !important; 
+
+            }
+            .icon{
+                color:white;
+                display: inline-block;
+                float: left;
+                width: 45px;
+                padding: 0 10px;
+                height: 30px;
+                display: none;
+
+                &:hover{
+                    padding: 0 0px;
+                }
+
+            }
+            .icon-exclamation{
+                position: absolute;
+                top:7px;
+                right: 7px;
+            }
+
+
+            .icons-on-left{
+                @include get-gird-repeat(4, auto);
+                @include get-vertical-align;
+                position: absolute;
+                bottom: 15px;
+                
+                .duration {
+                    font-weight: 300;
+                    font-size: 13px;
+                    margin-left: 7px
+                }
+            }
+            .icons-on-right{
+                @extend .icons-on-left;
+                @include get-gird-repeat(7, auto);
+                right: 0;
+
+                
+            }
+
+            .icon-auto-play{
+                background-color: rgb(161, 161, 161, 0.4);
+                height: 10px;
+                width: 30px;
+                border-radius: 5px;
+                position: relative;
+                @include get-vertical-align;
+                .icon{
+                    color: #000;
+                    background-color: white;
+                    height: 18px;
+                    width: 18px;
+                    position: absolute;
+                    right: 0;
+                    padding: 0 2px ;
+                    border-radius: 50%;
+                }
+            }
+        }
+
+
+        // play video details styling
+        .playarea-details{
+            padding: 20px 0;
+            .playarea-title{
+                font-size: 20px;
+                font-weight: 600;
+                text-transform: capitalize;
+            }
+
+            .playarea-datails-text{
+                @include get-gird(40% 60%);
+                justify-content: left;
+                .video-detail-left{
+                    @include get-gird(40px auto);
+                    column-gap: 20px;
+                    justify-content: left;
+                    .playarea-channel-thumb{
+                        border-radius: 50px;
+                        text-align: center;
+                        img{
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            object-fit: cover;
+                        }
+                    }
+                    .player-text{
+                        @include get-gird(auto auto);
+                        column-gap: 20px;
+                        .playarea-channel-name{
+                            font-size: 16px;
+                            font-weight: 500;
+                        }
+                        .playarea-suscribers{
+                            font-size: 12px;
+                            color: $color-gray;
+                        }
+
+                        .play-area-subcribe{
+                            margin-top: 10px;
+                            font-size: 14px;
+                            background-color: white;
+                            display: inline-block;
+                            color: black;
+                            font-weight: 600;
+                            padding: 10px 15px;
+                            border-radius: 50px;
+                            &:hover{
+                                background-color: rgb(226, 225, 225);
+                            }
+                        }
+                    }
+                }
+
+
+
+                .video-detail-right{
+                    @include get-gird-repeat(4, auto);
+                    justify-content:right;
+                    .detail-btn{
+                        @include get-vertical-align;
+                        background-color: $color-light-gray;
+                        margin-left: 10px;
+                        padding: 10px 10px;
+                        border-radius: 50px;
+                        font-size: 14px;
+                        font-weight: 500;
+                        .icon {
+                            font-size: 23px;
+                            width: 30px;
+                        }
+                        &:hover {
+                            background-color: $color-border-gray;
+                        }
+                    }
+
+                    .play-menu{
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+            }
+        }
+
+
+
+
+
+    }
+
+
+    .playarea-left{
+
+        .playarea-related-item{
+            @include get-gird(50% 50%);
+            overflow: hidden;
+            cursor: pointer;
+            column-gap: 5px;
+            align-items: inherit;
+            justify-content: inherit;
+            margin-bottom: 5px;
+            .related-video-thumb{
+                position: relative;
+                img{
+                    width: 100%;
+                    object-fit: cover;
+                    border-radius: 5px;
+
+                }
+
+                .related-video-run-time{
+                    z-index: 22;
+                    position: absolute;
+                    bottom: 5px;
+                    right: 5px;
+                    background-color: rgb(0, 0, 0, 0.5);
+                    padding: 1px 5px;
+                    font-size: 13px;
+                    border-radius: 5px;
+                }
+            }
+
+            .realted-video-details{
+
+                .related-video-title{
+                    font-weight: 500;
+                    font-size: 14px;
+                }
+
+                .related-video-channel{
+                    font-size: 12px;
+                    font-weight: 400;
+                    color: $color-gray;
+                }
+
+                .related-video-views{
+                    @extend .related-video-channel
+                }
+            }
+        }
+
+    }
+}

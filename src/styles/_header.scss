@@ -18,6 +18,7 @@
             display: inline-block;
             padding: 0;
             height: 20px;
+            cursor: auto;
         }
 
         .signup {
@@ -191,10 +192,15 @@
         @include get-gird(auto auto);
         justify-content: left;
         padding: 15px 20px;
-
+        border-radius: 10px;
+        cursor: pointer;
         .icon {
             margin-right: 20px;
             font-size: 20px;
+        }
+
+        &:hover{
+            background: $color-border-gray;
         }
     }
 

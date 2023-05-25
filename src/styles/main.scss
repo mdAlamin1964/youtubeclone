@@ -2,6 +2,7 @@
 @import "config";
 @import "header";
 @import "video";
+@import "playVideo";
 @import "sidebar";
 @import "shorts";
 @import "dynamicStyles";
@@ -12,4 +13,7 @@ body{
     @include color-mood(dark);
 }
 
+.container{
+    overflow: hidden;
+}
 

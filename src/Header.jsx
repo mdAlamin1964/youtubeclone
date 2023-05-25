@@ -1,7 +1,6 @@
 import React from "react"
-export default function Header({icons, handleBurcumb, inputBarEvent, inputBarOutEvent, setttingMenuMood, handleSettingsClick, settingsMoodState, handleBackClick}) {
+export default function Header({icons, handleBurcumb, inputBarEvent, inputBarOutEvent, setttingMenuMood, handleSettingsClick, settingsMoodState, handleBackClick, handleSearch, handleInputSearchBtn}) {
   
-
     return(
     
         <div className="header">
@@ -31,10 +30,13 @@ export default function Header({icons, handleBurcumb, inputBarEvent, inputBarOut
                         <input type="text" className="input-bar" id="seach-input-bar" placeholder="Search"
                         onFocus={inputBarEvent}
                         onBlur={inputBarOutEvent}
+                        onChange={handleSearch}
                         
                         />
                     </div>
-                    <button className="search-btn">
+                    <button className="search-btn"
+                        onClick={handleInputSearchBtn}
+                    >
                         {icons.IoIosSearch}
                         <div className="search-btn-tooltip">Search</div>
                     </button>
