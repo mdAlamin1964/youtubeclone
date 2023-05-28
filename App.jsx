@@ -203,17 +203,18 @@ export default function App() {
     }
 
 
-
 // Api data images text etc
     const[videos, setVideos] = React.useState(VideoData.videos)
-    React.useEffect(() => {
-        const client = createClient("aV9niIcdta77XpanS47B88MjS9t8DxbsmCmBpQxu6WbS3kmQBH6Ikzj8")
-        const query = searchVideo
-        client.videos.search({query, per_page: 16}).then(videos => {
-            videos.videos.length > 0? 
-            setVideos(videos.videos) : ""
-        })
-    },[searchVideo])
+    // React.useEffect(() => {
+    //     const client = createClient("aV9niIcdta77XpanS47B88MjS9t8DxbsmCmBpQxu6WbS3kmQBH6Ikzj8")
+    //     const query = searchVideo
+    //     client.videos.search({query, per_page: 16}).then(videos => {
+    //         videos.videos.length > 0? 
+    //         setVideos(videos.videos) : ""
+    //     }).catch(error => {
+    //         console.log(error)
+    //     })
+    // },[searchVideo])
 
 
 
@@ -340,7 +341,6 @@ export default function App() {
         setSideBarClass("fixed-bar")
     }
 
-    console.log(playVideo.resulation)
 
     // playvidoe backbtn
     function handleBackbtnPlayVideo() {
@@ -417,7 +417,7 @@ export default function App() {
 
 
 
-    // shorts api call
+    // shorts 
     const shortsdata = videos.slice(8).map((n, i) => {
         let videoThubmnail = n.image
         let runTime =  fixDurationTime(n.duration)
