@@ -129,7 +129,7 @@ $color-light-gray-hover: #3f3f3f;
         width: $tooltip-width;
     }
     .#{$className} {
-        background-color: rgb(87, 87, 87, 0.8);
+        background-color: rgba(32, 32, 32, 0.9);
         border: none;
         padding: 10px;
         color: white;
@@ -142,8 +142,10 @@ $color-light-gray-hover: #3f3f3f;
         text-align: center;
         top: 50%;
         left: 50%;
-        margin-top: 60px;
+        margin-top: 50px;
         transform: translate(-50%, -50%);
         display: none;
+        z-index: 4;
+        font-weight: 500;
     }
 }

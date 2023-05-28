@@ -1,9 +1,9 @@
 import React from "react"
-export default function SideBar({icons, className}){
+export default function SideBar({icons, className, handlelogoClick}){
     return (
         <div className={className}>
             <div className="user-saction saction">
-                <div className="user-saction-item item active">
+                <div className="user-saction-item item active" onClick={handlelogoClick}>
                     {icons.MdHomeFilled} <span className="item-name">Home</span> 
                 </div>
                 <div className="user-saction-item item">

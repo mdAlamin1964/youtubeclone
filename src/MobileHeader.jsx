@@ -1,5 +1,5 @@
 import React from 'react'
-export default function MobileHeader({icons, handleBurcumb, setttingMenuMood, handleSettingsClick, settingsMoodState, handleMobileSearchBtn}) {
+export default function MobileHeader({icons, handleBurcumb, setttingMenuMood, handleSettingsClick, settingsMoodState, handleMobileSearchBtn, handlelogoClick}) {
     return (
         <div className="mobile-header">
             <div className="mobile-left">
@@ -7,7 +7,9 @@ export default function MobileHeader({icons, handleBurcumb, setttingMenuMood, ha
                     <div className="mobile-burcumb-icon" onClick={handleBurcumb}>
                         {icons.HiOutlineBars3}
                     </div>
-                    <div className="mobile-logo">
+                    <div className="mobile-logo"
+                        onClick={handlelogoClick}
+                    >
                         <img className="mobile-logo-img" src="./src/assets/logo-dark.png" alt="Youtube Home" />
                         <div className="mobile-country">BD</div>
                         <div className="logo-tooltip">YouTube Home</div>

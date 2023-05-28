@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactPlayer from 'react-player'
-export default function VideoPlay({icons, videoUrl, channelImage, videoTitle, channelName, views, upload, handleBackbtnPlayVideo, relatedVideoItems}){
+export default function VideoPlay({icons, videoUrl, channelImage, videoTitle, channelName, views, handleBackbtnPlayVideo, relatedVideoItems, handlePlayVidoePlay, handlePlay, handleMute, handlePip, runTime, controls, videoReg, quality, playNextVideo}){
     return (
         <div className="playarea">
             <div className="playarea-right">
@@ -13,47 +13,94 @@ export default function VideoPlay({icons, videoUrl, channelImage, videoTitle, ch
                     <ReactPlayer
                         className="video-play-box"
                         url={videoUrl}
-                        playing={true}
-                        
+                        playing={handlePlay}
+                        volume={0.5}
+                        muted={handleMute}
+                        controls={false}
+                        pip={handlePip}
                     />
                     <div className="icon-exclamation">
                         {icons.AiFillExclamationCircle}
                     </div>
                     <div className="icons-on-left">
-                        <div className="icon-BsFillPlayFill">
-                            {icons.BsFillPlayFill}
+                        <div className="icon-BsFillPlayFill"
+                            onClick={handlePlayVidoePlay}
+                        >  
+                           {handlePlay?
+                                icons.BsPauseFill :
+                                
+                                icons.BsFillPlayFill
+                            }
+                            <div className="icon-BsFillPlayFill-tooltip">{
+                                handlePlay?
+                                "Puse" :
+                                
+                                "Play"
+                            }
+                            </div>
                         </div>
-                        <div className="icon-MdSkipNext">
+                        <div className="icon-MdSkipNext"
+                            onClick={playNextVideo}
+                            >
                             {icons.MdSkipNext}
+                            <div className="icon-MdSkipNext-tooltip">Next</div>
                         </div>
-                        <div className="icon-BsFillVolumeUpFill">
-                            {icons.BsFillVolumeUpFill}
+                        <div className="icon-BsFillVolumeUpFill"
+                            onClick={handlePlayVidoePlay}
+                        >
+                            {   handleMute? 
+                                icons.TbVolumeOff:
+                                icons.BsFillVolumeUpFill 
+                                
+                            }
+
+                            <div className="icon-BsFillVolumeUpFill-tooltip">
+                            {   
+                                handleMute? 
+                                "Unmute":
+                                "Mute"
+                                
+                            }
+
+                            </div>
+
+
                         </div>
                         <div className="duration">
-                            <span className='start'>0:01</span> / <span className="end">5:00</span>
+                            <span className='start'></span>  <span className="end">{runTime}</span>
                         </div>
                     </div>
                     <div className="icons-on-right">
-                        <div className="icon-auto-play">
+                        <div className="icon-auto-play"
+                            onClick={handlePlayVidoePlay}
+                        >
                             {icons.BsFillPlayFill}
                         </div>
-                        <div className="icon-MdClosedCaption">
+                        <div className="icon-MdClosedCaption"
+                            onClick={handlePlayVidoePlay}
+                        >
                             {icons.MdClosedCaption}
                         </div>
-                        <div className="icon-RxGear">
-                            {icons.RxGear}
+                        <div className="icon-RxGear"
+                            onClick={handlePlayVidoePlay}
+                        >   
+                                <span className='regulation-id'>{quality}</span>
+                                {icons.RxGear}
+                                {videoReg}
+                                <div className="icon-RxGear-tooltip">Resulation</div>
                         </div>
-                        <div className="icon-TbBoxAlignBottomRight">
-                            {icons.TbBoxAlignBottomRight}
-                        </div>
-                        <div className="icon-TbRectangle">
+                        <div className="icon-TbRectangle"
+                            onClick={handlePlayVidoePlay}
+                        >
                             {icons.TbRectangle}
+                            <div className="icon-TbRectangle-tooltip">Wide view</div>
                         </div>
-                        <div className="icon-FaChromecast">
+                        <div className="icon-FaChromecast"
+                            onClick={handlePlayVidoePlay}
+                        >
                             {icons.FaChromecast}
-                        </div>
-                        <div className="icon-BiFullscreen">
-                            {icons.MdFullscreen}
+
+                            <div className="icon-FaChromecast-tooltip">Picture in picture</div>
                         </div>
                     </div>
                 </div>

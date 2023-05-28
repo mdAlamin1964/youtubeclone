@@ -2,7 +2,7 @@
     position: absolute;
     top: 70px;
     right: 0;
-    z-index: 9999;
+    z-index: 2;
     width: 100%;
     background-color: $background-dark;
     padding: 0 3%;
@@ -15,6 +15,7 @@
     column-gap: 10px;
     margin-top: 25px;
     .playarea-right{
+        overflow: hidden;
         .back-btn{
             color: white;
             font-size: 25px;
@@ -40,7 +41,11 @@
             }
             .video-play-box{
                 width: 100% !important;
-                height: inherit !important; 
+                height: inherit !important;
+                video{
+                    max-height: 1080px;
+                }
+                
 
             }
             .icon{
@@ -51,7 +56,7 @@
                 padding: 0 10px;
                 height: 30px;
                 display: none;
-
+                cursor: pointer;
                 &:hover{
                     padding: 0 0px;
                 }
@@ -69,19 +74,96 @@
                 @include get-vertical-align;
                 position: absolute;
                 bottom: 15px;
-                
+
                 .duration {
                     font-weight: 300;
                     font-size: 13px;
                     margin-left: 7px
                 }
+                .icon-BsFillPlayFill{
+                    @include tooltip-style("icon-BsFillPlayFill-tooltip")
+                }
+
+                .icon-MdSkipNext{
+                    @include tooltip-style("icon-MdSkipNext-tooltip")
+                }
+
+                .icon-BsFillVolumeUpFill{
+                    @include tooltip-style("icon-BsFillVolumeUpFill-tooltip")
+                }
+
+                .icon-RxGear{
+                    @include tooltip-style("icon-RxGear-tooltip")
+                }
+
+                .icon-TbRectangle{
+                    @include tooltip-style("icon-TbRectangle-tooltip", 90px)
+                }
+
+                .icon-FaChromecast{
+                    @include tooltip-style("icon-FaChromecast-tooltip", 120px);
+
+                    .icon-FaChromecast-tooltip{
+                        left:-15px
+                    }
+                }
             }
             .icons-on-right{
                 @extend .icons-on-left;
-                @include get-gird-repeat(7, auto);
+                @include get-gird-repeat(5, auto);
                 right: 0;
-
                 
+                .icon-auto-play, .icon-MdClosedCaption{
+                    opacity: 0.5;
+                }
+
+                // Reazulation gear icon menu
+                .icon-RxGear{
+                    position: relative;
+                    .regulation-id{
+                        position: absolute;
+                        right: -23px;
+                        top: 0;
+                        font-size: 12px;
+                        font-weight: 600;
+                        color: $color-youtube-red;
+                        background-color: $color-gray;
+                        text-transform: uppercase;
+                    }
+                    
+                    .videoReg-main{
+                        position: absolute;
+                        background-color: $color-dark-gray;
+                        text-align: left;
+                        z-index: 99999;
+                        border-radius: 5px;
+                        left: 0;
+                        bottom:40px;
+                        width: 150px;
+                        font-size: 14px;
+
+                        .videoReg-item{
+                            @include get-gird(auto auto);
+                            justify-content: left;
+                            padding: 10px 10px;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            .icon {
+                                margin-right: 20px;
+                                font-size: 20px;
+                            }
+
+                            &:hover{
+                                background: $color-border-gray;
+                            }
+                        }
+                    }
+
+                }
+
+
+
+
             }
 
             .icon-auto-play{
@@ -107,11 +189,12 @@
 
         // play video details styling
         .playarea-details{
-            padding: 20px 0;
+            padding: 10px 0;
             .playarea-title{
                 font-size: 20px;
                 font-weight: 600;
                 text-transform: capitalize;
+                margin-bottom: 10px
             }
 
             .playarea-datails-text{
@@ -137,6 +220,7 @@
                         .playarea-channel-name{
                             font-size: 16px;
                             font-weight: 500;
+                            margin-bottom: 5px;
                         }
                         .playarea-suscribers{
                             font-size: 12px;
@@ -168,7 +252,8 @@
                         @include get-vertical-align;
                         background-color: $color-light-gray;
                         margin-left: 10px;
-                        padding: 10px 10px;
+                        padding: 10px;
+                        padding-right: 12px;
                         border-radius: 50px;
                         font-size: 14px;
                         font-weight: 500;
@@ -185,6 +270,7 @@
                         width: 40px;
                         height: 40px;
                     }
+
                 }
             }
         }
@@ -203,8 +289,7 @@
             overflow: hidden;
             cursor: pointer;
             column-gap: 5px;
-            align-items: inherit;
-            justify-content: inherit;
+            align-items: start;
             margin-bottom: 5px;
             .related-video-thumb{
                 position: relative;
@@ -212,7 +297,7 @@
                     width: 100%;
                     object-fit: cover;
                     border-radius: 5px;
-
+                    max-height: 120px;
                 }
 
                 .related-video-run-time{
@@ -248,3 +333,5 @@
 
     }
 }
+
+

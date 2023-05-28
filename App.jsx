@@ -7,14 +7,14 @@ import SideBar from "./src/SideBar"
 import Videos from "./src/Videos"
 import SettingsMenu from "./src/SettingsMenu"
 import MobileHeader from "./src/MobileHeader"
-import Data from "./src/Data"
 import { createClient } from "pexels"
 import VideoData from "./src/VideoData"
 import VideoPlay from "./src/VideoPlay"
-import ReactPlayer from "react-player"
+import VideoPlayReg from "./src/VideoPlayRez"
+
 
 // icons
-import { BsPerson, BsFillMicFill, BsFilePlay, BsCollectionPlay, BsTrophy, BsFillVolumeUpFill, BsDot, BsGlobe2, BsFillPlayFill, BsThreeDots} from "react-icons/bs"
+import { BsPerson, BsFillMicFill, BsFilePlay, BsCollectionPlay, BsTrophy, BsFillVolumeUpFill, BsDot, BsGlobe2, BsFillPlayFill, BsThreeDots, BsPauseFill} from "react-icons/bs"
 import { IoIosSearch, IoLogoGameControllerB } from "react-icons/io"
 import { HiOutlineBars3, HiLanguage } from "react-icons/hi2"
 import { RxDotsVertical } from "react-icons/rx"
@@ -22,7 +22,7 @@ import { AiOutlineLeft, AiOutlineRight, AiFillFire,AiFillCheckCircle, AiFillExcl
 import { MdHomeFilled, MdVideoLibrary, MdOutlineHistory, MdOutlineMusicNote, MdClosedCaption,MdKeyboardArrowDown, MdOutlineDarkMode, MdClose, MdOutlineArrowBack, MdSkipNext,MdFullscreen, MdPlaylistAdd } from "react-icons/md"
 import {FaUserShield, FaChromecast} from "react-icons/fa"
 import {RxGear} from "react-icons/rx"
-import {TbBoxAlignBottomRight, TbRectangle, TbShare3} from "react-icons/tb"
+import {TbBoxAlignBottomRight, TbRectangle, TbShare3, TbVolumeOff} from "react-icons/tb"
 
 
 export default function App() {
@@ -68,6 +68,8 @@ export default function App() {
         TbShare3 : <TbShare3 className="icon"/>,
         MdPlaylistAdd : <MdPlaylistAdd className="icon"/>,
         BsThreeDots : <BsThreeDots className="icon"/>,
+        TbVolumeOff : <TbVolumeOff className="icon"/>,
+        BsPauseFill : <BsPauseFill className="icon"/>,
     }
 
     // header burcumb for side bar view
@@ -103,21 +105,29 @@ export default function App() {
 
 
 
-    // adding class to side bar
-    const [sideBarClass, setSideBarClass] = React.useState(defaultSideBarClass)
+       // adding class to side bar
+       const [sideBarClass, setSideBarClass] = React.useState(defaultSideBarClass)
     
-    function defaultSideBarClass() {
-        return window.innerWidth <= 1300? "fixed-bar" : ""
-    }
 
-    function addClassWhileResize() {
-        if (window.innerWidth <= 1300) {
-            setSideBarClass("fixed-bar")
-        } else {
-            setSideBarClass("")
-        }
-    }
-    addEventListener('resize', addClassWhileResize)
+
+       function defaultSideBarClass() {
+           return window.innerWidth <= 1300? "fixed-bar" : ""
+       }
+       
+
+
+       function addClassWhileResize() {
+           if (window.innerWidth <= 1300) {
+               setSideBarClass("fixed-bar")
+           } else {
+               setSideBarClass("")
+           }
+       }
+   
+       addEventListener('resize', addClassWhileResize)
+
+
+
 
 
 
@@ -158,6 +168,7 @@ export default function App() {
    }
 
 
+
    // mobile menu moode
    const [mobileMood, setMobileMood] = React.useState(false)
    function setmobile() {
@@ -169,7 +180,6 @@ export default function App() {
    }
 
    addEventListener('resize', setmobile)
-
 
 
 
@@ -187,7 +197,7 @@ export default function App() {
 
 
    // Video search funtion
-   const [searchVideo, setSearchVideo] = React.useState("nature")
+   const [searchVideo, setSearchVideo] = React.useState("hill")
     function handleSearchInput(event) {
         setSearchVideo(event.target.value)
     }
@@ -205,13 +215,60 @@ export default function App() {
         })
     },[searchVideo])
 
+
+
+
+
     //Topbar menus
-    let topBarMenuItems = videos.slice(0,8).map(n => {
-        let category = n.user.name? n.user.name : "Design"
+    const[topBarCount, setTopBarCount] = React.useState({
+        start: 0,
+        end: 8
+    })
+
+    let videoCataegory = videos.map(n => n.user.name? n.user.name.split(" ")[0] : "")
+
+    let newVideoCategory = [] 
+    
+    videoCataegory.forEach(n => {
+        if(!newVideoCategory.includes(n)) {
+            newVideoCategory.push(n)
+        }
+    }) 
+    
+    
+    let topBarMenuItems = newVideoCategory.slice(topBarCount.start, topBarCount.end).map(n => {
+
+        let category = n? n : "Design"
+
         return (
         <div className="filter-item item" key={nanoid()}>{category}</div>
         )
+
     })
+
+    // function for move category left arrow
+    function moveTopCategoryLeftArow() {
+        if(topBarCount.end < newVideoCategory.length) {
+            setTopBarCount(prevBarCount => ({
+                ...prevBarCount,
+                start:prevBarCount.start + 1,
+                end: prevBarCount.end + 1
+            }))
+        }
+    }
+
+    // function for move category left arrow
+    function moveTopCategoryRightArow() {
+        if(topBarCount.start >= 1 ) {
+            setTopBarCount(prevBarCount => ({
+                ...prevBarCount,
+                start:prevBarCount.start - 1,
+                end: prevBarCount.end - 1
+            }))
+        }
+    }
+
+
     // slicing topmenu options to mobilemood
     topBarMenuItems = mobileMood? topBarMenuItems.slice(0,4) : topBarMenuItems
 
@@ -263,7 +320,8 @@ export default function App() {
 
     // playvideo fucntion
     const [playVideo, setPlayVideo] = React.useState({})
-    function handlePlayVideo(videoThubmnail, runTime, channelImage, videoTitle, channelName, views, upload, url, show) {
+
+    function handlePlayVideo(videoThubmnail, runTime, channelImage, videoTitle, channelName, views, upload, url, show, resulation, index) {
         setPlayVideo({
             videoThubmnail: videoThubmnail,
             runTime: runTime, 
@@ -273,33 +331,62 @@ export default function App() {
             views: views,
             upload: upload,
             url: url,
+            resulation: resulation,
+            quality: "hd",
+            index: index,
             show: show,
         })
+
+        setSideBarClass("fixed-bar")
     }
+
+    console.log(playVideo.resulation)
 
     // playvidoe backbtn
     function handleBackbtnPlayVideo() {
         setPlayVideo({
             show: false
         })
+
+        setSideBarClass("")
+        setSearchVideo("feature")
     }
 
-    console.log(playVideo)
+
+    // playvidoe backbtn
+    function handlehHeaderSearch() {
+        setPlayVideo({
+            show: false
+        })
+
+        setSideBarClass("")
+
+        //geitting input value
+        let headerInput =  document.querySelector(".input-bar").value
+        setSearchVideo(headerInput)
+    }
+    
+    // formate durain time
+    function fixDurationTime(time) {
+       return time.toString().length > 2? time.toString() : "0:" + time.toString()
+    }
 
     //  vidos to the main page
-    const videoItems = videos.slice(0,8).map(n => {
+    const videoItems = videos.slice(0,8).map((n, i) => {
         let videoThubmnail = n.image
-        let runTime = "0:"+ n.duration
+        let runTime =  fixDurationTime(n.duration)
         let channelImage = n.video_pictures[10].picture
         let videoTitle = generateTitle(n.url, 5)
         let channelName = n.user.name
         let views = viewCount(n.height)
         let upload =  "1 day ago"
+        let resulation = n.video_files
+        let index = i
         return (
             <div className="video-items items" key={nanoid()}>
                 <div className="video-thumbnail">
                     <img src={videoThubmnail} alt="" 
-                        onClick={()=> handlePlayVideo(videoThubmnail, runTime, channelImage, videoTitle, channelName, views, upload, n.video_files[2].link, true)}
+                        onClick={()=> handlePlayVideo(videoThubmnail, runTime, channelImage, generateTitle(n.url, 10), channelName, views, upload, n.video_files[0].link, true, resulation, index)}
                     />
                     <span className="video-run-time">{runTime}</span>
                     <div className="video-top-left">
@@ -331,18 +418,20 @@ export default function App() {
 
 
     // shorts api call
-    const shortsdata = videos.slice(8).map(n => {
-        // for play video
+    const shortsdata = videos.slice(8).map((n, i) => {
         let videoThubmnail = n.image
-        let runTime = "0:"+ n.duration
+        let runTime =  fixDurationTime(n.duration)
         let channelImage = n.video_pictures[10].picture
-        let videoTitle = generateTitle(n.url, 2)
+        let videoTitle = generateTitle(n.url, 5)
         let channelName = n.user.name
         let views = viewCount(n.height)
         let upload =  "1 day ago"
+        let resulation = n.video_files
+        let index = i
+
         return (
             <div className="shorts-item" key={nanoid()}
-                onClick={()=> handlePlayVideo(videoThubmnail, runTime, channelImage, videoTitle, channelName, views, upload, n.video_files[2].link, true)}
+                onClick={()=> handlePlayVideo(videoThubmnail, runTime, channelImage, generateTitle(n.url, 10), channelName, views, upload, n.video_files[2].link, true, resulation, index)}
             >
                 <div className="shorts-thumb">
                     <img src={videoThubmnail} alt="" />
@@ -360,18 +449,21 @@ export default function App() {
         )
     })
 
-    const relatedVideoItems = videos.map(n => {
+    const relatedVideoItems = videos.map((n, i) => {
         let videoThubmnail = n.image
-        let runTime = "0:"+ n.duration
+        let runTime =  fixDurationTime(n.duration)
         let channelImage = n.video_pictures[10].picture
         let videoTitle = generateTitle(n.url, 5)
         let channelName = n.user.name
         let views = viewCount(n.height)
         let upload =  "1 day ago"
+        let resulation = n.video_files
+        let index = i
 
         return (
             <div className="playarea-related-item"
-                onClick={()=> handlePlayVideo(videoThubmnail, runTime, channelImage, videoTitle, channelName, views, upload, n.video_files[2].link, true)}
+                key={nanoid()}
+                onClick={()=> handlePlayVideo(videoThubmnail, runTime, channelImage, generateTitle(n.url, 10), channelName, views, upload, n.video_files[2].link, true, resulation, index)}
             >
                 <div className="related-video-thumb">
                     <img src={channelImage} alt="" />
@@ -393,10 +485,164 @@ export default function App() {
     })
 
 
+    // video resolution setting
+    const [videoReg, setVideoReg] = React.useState(false)
 
 
 
-    console.log(videos)
+
+
+
+
+    // fucntion playvideo control buttons
+    const [videoControls, setVideoControls] = React.useState({
+            playpause: true,
+            handleNext: false,
+            handleMute: true,
+            autoPlay: false,
+            caption: false,
+            settings:false,
+            pictuerInPicture: false,
+            wideScreen:false,
+            cast:false,
+            fullScreen: false,
+            controls: false,
+        })
+
+        // play button
+    function handlePlayVidoePlay(event){
+        let currentItem = event.currentTarget.className
+
+        // playPause handleing
+        if (currentItem == "icon-BsFillPlayFill" || currentItem ==  "playarea-video-box") {
+            setVideoControls(prevControls => (
+                {
+                    ...prevControls,
+                    playpause: !prevControls.playpause,
+                } 
+            ))
+        }
+
+
+        //Mute handeling
+        if(currentItem == "icon-BsFillVolumeUpFill") {
+            setVideoControls(prevControls => ({
+                ...prevControls,
+                handleMute: !prevControls.handleMute
+            }))
+        }
+
+        // picture in picture mode setup
+        if(currentItem == "icon-TbBoxAlignBottomRight"){
+            setVideoControls(prevControls => ({
+                ...prevControls,
+                pictuerInPicture: !prevControls.pictuerInPicture
+            }))
+        }
+
+        // Fullscreen request
+        if (currentItem == "icon-BiFullscreen"){
+            let elem = document.querySelector(".video-play-box")
+            elem.requestFullscreen()
+
+        }
+
+
+        //wide video
+        if (currentItem == "icon-TbRectangle") {
+            let playarea = document.querySelector(".playarea")
+            let playAreaLeft =  document.querySelector(".playarea-left")
+
+            if(!playarea.className.includes("wide-video")) {
+                playarea.classList.add("wide-video")
+                playAreaLeft.classList.add("go-none")
+            } else {
+                playarea.classList.remove("wide-video")
+                playAreaLeft.classList.remove("go-none")
+            }
+
+        }
+
+
+        if (currentItem == "icon-RxGear") {
+            setVideoReg(!videoReg)
+        }
+    } 
+
+
+    //resulation fix function help
+    function fixResulation(videoId, quality) {
+        setPlayVideo(prevPlayVideo=> ({
+            ...prevPlayVideo,
+            url: prevPlayVideo.resulation[videoId].link,
+            quality: quality
+        }))
+    }
+
+
+    // video regClickFunction
+    function regFunc(event){
+        let currentItem = event.target.className
+        console.log(playVideo.resulation.length, "resulation")
+        if(currentItem.includes("1080p")){
+            fixResulation(2, "fhd")
+        }
+
+        if(currentItem.includes("720p") && playVideo.resulation.length > 3) {
+            fixResulation(3, "hd")
+        }
+
+        if(currentItem.includes("480p") && playVideo.resulation.length > 4) {
+            fixResulation(4, "sd")
+        }
+
+        if(currentItem.includes("144p")) {
+            fixResulation(1, "lo")
+        }
+    }
+
+
+    // next video play
+    function playNextVideo(){
+
+        if(playVideo.index < videos.length) {
+            let currentIndex = playVideo.index + 1
+            let n = videos[currentIndex]
+
+
+            let videoThubmnail = n.image
+            let runTime =  fixDurationTime(n.duration)
+            let channelImage = n.video_pictures[10].picture
+            let videoTitle = generateTitle(n.url, 5)
+            let channelName = n.user.name
+            let views = viewCount(n.height)
+            let upload =  "1 day ago"
+            let resulation = n.video_files
+            let newUrl =  n.video_files[3].link
+
+            setPlayVideo({
+                videoThubmnail: videoThubmnail,
+                runTime: runTime, 
+                channelImage: channelImage, 
+                videoTitle: videoTitle,
+                channelName: channelName, 
+                views: views,
+                upload: upload,
+                url: newUrl,
+                resulation: resulation,
+                quality: "hd",
+                index: currentIndex,
+                show: true,
+            })
+
+
+        }
+        
+    }
+
+
+
+
     return(
         <div className="container">
 
@@ -412,6 +658,8 @@ export default function App() {
                             settingsMoodState= {settingsMood}
                             handleSettingsClick = {handleSettingsClick}
                             handleMobileSearchBtn= {handleMobileSearchBtn}
+                            handlelogoClick = {handleBackbtnPlayVideo}
+
                             />
                     :
                         <Header
@@ -425,7 +673,8 @@ export default function App() {
                             handleBackClick = {handleBackClick}
                             handleSearch = {(event) => handleSearchInput(event)}
 
-                            handleInputSearchBtn = {handleBackbtnPlayVideo}
+                            handleInputSearchBtn = {handlehHeaderSearch}
+                            handlelogoClick = {handleBackbtnPlayVideo}
                         />
                         
 
@@ -445,50 +694,63 @@ export default function App() {
                             channelName={playVideo.channelName}
                             views={playVideo.views}
                             upload={playVideo.upload}
-
+                            runTime ={playVideo.runTime}
                             sidebarVideo={videoItems}
                             relatedVideoItems={relatedVideoItems}
+                            videoReg={videoReg && <VideoPlayReg regFunc={regFunc} />}
+                            quality={playVideo.quality}
                             
+                            // play video controls
+                            handlePlayVidoePlay={(event)=> handlePlayVidoePlay(event)}
+                            handlePlay={videoControls.playpause}
+                            handleMute= {videoControls.handleMute}
+                            handlePip= {videoControls.pictuerInPicture}
+                            controls= {videoControls.controls}
+                            playNextVideo = {playNextVideo}
                         />
                     </div>
                 }
             </div>
            
-
-            <div className="slide">
-                <SideBar
-                    icons={icons}
-                    className= "slide-sidebar"
-                />
-                <div className="rest-area"  onClick={goDisplayNone}>
-                </div>
-            </div>
-
-
-
-            <div className="main-saction">
-                <div className="main-left">
-                    <SideBar 
-                        className={`side-bar side-bar-fixed ${sideBarClass}`}
+                <div className="slide">
+                    <SideBar
                         icons={icons}
+                        className= "slide-sidebar"
+                        handlelogoClick = {handleBackbtnPlayVideo}
                     />
+                    <div className="rest-area"  onClick={goDisplayNone}>
+                    </div>
                 </div>
-                <div className="main-right">
-                    <TopBar 
-                        className="top-bar"
-                        icons={icons}
-                        topBarMenuItems={topBarMenuItems}
-                    />
-                    <Videos
-                        className={"video-area"}
-                        icons = {icons}
-                        videoItems={videoItems}
-                        shortsItem = {shortsdata}
-                    />
-                </div>
+
+
+
                 
-            </div>
-            
+                    <div className="main-saction">
+                            <div className="main-left">
+                                <SideBar 
+                                    className={`side-bar side-bar-fixed ${sideBarClass}`}
+                                    icons={icons}
+                                    handlelogoClick = {handleBackbtnPlayVideo}
+                                />
+                            </div>
+                            {!playVideo.show &&
+                                <div className="main-right">
+                                    <TopBar 
+                                        className="top-bar"
+                                        icons={icons}
+                                        topBarMenuItems={topBarMenuItems}
+                                        leftArroFunc= {moveTopCategoryLeftArow}
+                                        RightArroFunc= {moveTopCategoryRightArow}
+                                    />
+                                    <Videos
+                                        className={"video-area"}
+                                        icons = {icons}
+                                        videoItems={videoItems}
+                                        shortsItem = {shortsdata}
+                                    />
+                                </div>
+                                }
+                    </div>
         </div>
     )
 }

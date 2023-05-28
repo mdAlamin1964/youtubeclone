@@ -1,5 +1,5 @@
 import React from "react"
-export default function Header({icons, handleBurcumb, inputBarEvent, inputBarOutEvent, setttingMenuMood, handleSettingsClick, settingsMoodState, handleBackClick, handleSearch, handleInputSearchBtn}) {
+export default function Header({icons, handleBurcumb, inputBarEvent, inputBarOutEvent, setttingMenuMood, handleSettingsClick, settingsMoodState, handleBackClick, handleSearch, handleInputSearchBtn, handlelogoClick}) {
   
     return(
     
@@ -9,7 +9,9 @@ export default function Header({icons, handleBurcumb, inputBarEvent, inputBarOut
                 <div className="burcumb-icon" onClick={handleBurcumb}>
                     {icons.HiOutlineBars3}
                 </div>
-                <div className="logo">
+                <div className="logo" 
+                    onClick={handlelogoClick}
+                >
                     <img className="logo-img" src="./src/assets/logo-dark.png" alt="Youtube Home" />
                     <div className="country">BD</div>
                     <div className="logo-tooltip">YouTube Home</div>

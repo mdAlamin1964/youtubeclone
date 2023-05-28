@@ -166,4 +166,138 @@
         column-gap: 10px;
     }
 
+
+
+
+}
+
+
+
+
+
+    // Playvidoe responsive
+
+@include get-tab-responsive{
+
+    .playarea{
+        .playarea-right{
+            .playarea-video-box{
+
+            }
+
+            .playarea-details{
+
+                .playarea-datails-text{
+                     @include get-gird(50% 50%);
+
+                     .video-detail-left{
+                        .player-text{
+
+                            .play-area-subcribe{
+                               font-size: 12px; 
+                               padding: 7px 10px;
+                            }
+                        }
+                     }
+
+
+                    .video-detail-right{
+                        margin-top: 15px;
+
+                        .detail-btn{
+                            margin-right: 10px;
+                            margin-left: 0px;
+                            font-size: 12px;
+                            padding: 7px;
+                            padding-right: 9px;
+                            .icon {
+                                font-size: 18px;
+                                width: 25px;
+                            }
+                        }
+
+                        .play-menu{
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+}
+
+
+
+
+
+
+
+// play area mobile responise
+@include get-mobile-responsive{
+    .playarea{
+        display: block;
+
+        .playarea-right{
+
+            .playarea-video-box{
+
+            }
+
+            .playarea-details{
+                margin-bottom: 20px;
+                .playarea-datails-text{
+                        display: block;
+                     .video-detail-left{
+                        position: relative;
+                        .player-text{
+
+                            .play-area-subcribe{
+                                position: absolute;
+                                right: 0;
+                            }
+                        }
+                     }
+
+
+                    .video-detail-right{
+                        margin-top: 15px;
+                        justify-content: left;
+                        .detail-btn{
+                            .icon {
+
+                            }
+                        }
+
+                        .play-menu{
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+
+
+        // realated video
+        .playarea-left {
+            .playarea-related-item{
+                @include get-gird(40% 60%);
+                align-items: start;
+                margin-bottom: 10px;
+                .related-video-thumb{
+                    img{
+                        max-height: 240px;
+                    }
+                }
+
+                .realted-video-details{
+
+                }
+
+            }
+        }
+    }
 }
