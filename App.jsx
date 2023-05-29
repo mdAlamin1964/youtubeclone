@@ -104,6 +104,20 @@ export default function App() {
 
 
 
+    // mobile menu moode
+   const [mobileMood, setMobileMood] = React.useState(false)
+   function setmobile() {
+        if(window.innerWidth < 780){
+            setMobileMood(true)
+        } else {
+            setMobileMood(false)
+        }
+   }
+
+   addEventListener('resize', setmobile)
+
+
+
        // adding class to side bar
        const [sideBarClass, setSideBarClass] = React.useState(defaultSideBarClass)
     
@@ -148,6 +162,8 @@ export default function App() {
         
         let inputBar = document.querySelector(".search .input-bar")
         inputBar.style = "padding-left: 40px"
+
+        
    }
 
    function inputBarOutTriger() {
@@ -168,17 +184,7 @@ export default function App() {
 
 
 
-   // mobile menu moode
-   const [mobileMood, setMobileMood] = React.useState(false)
-   function setmobile() {
-        if(window.innerWidth < 780){
-            setMobileMood(true)
-        } else {
-            setMobileMood(false)
-        }
-   }
 
-   addEventListener('resize', setmobile)
 
 
 
@@ -196,11 +202,12 @@ export default function App() {
 
 
    // Video search funtion
-   const [searchVideo, setSearchVideo] = React.useState("hill")
+   const [searchVideo, setSearchVideo] = React.useState("feature")
     function handleSearchInput(event) {
         if (event.target.value.length > 0) {
             setSearchVideo(event.target.value)
-        }
+        } 
+
     }
 
 
@@ -369,7 +376,9 @@ export default function App() {
 
         //geitting input value
         let headerInput =  document.querySelector(".input-bar").value
-        setSearchVideo(headerInput)
+        headerInput.length > 0? 
+        setSearchVideo(headerInput):
+        setSearchVideo("feature")
     }
     
     // formate durain time
@@ -502,12 +511,6 @@ export default function App() {
 
     // video resolution setting
     const [videoReg, setVideoReg] = React.useState(false)
-
-
-
-
-
-
 
     // fucntion playvideo control buttons
     const [videoControls, setVideoControls] = React.useState({
@@ -683,8 +686,6 @@ export default function App() {
                         <MobileHeader 
                             icons={icons}
                             handleBurcumb={handeBurcumb}
-                            inputBarEvent = {inputBarTriger}
-                            inputBarOutEvent = {inputBarOutTriger}
                             setttingMenuMood = {settingsMood && <SettingsMenu icons={icons}/>}
                             settingsMoodState= {settingsMood}
                             handleSettingsClick = {handleSettingsClick}
