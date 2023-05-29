@@ -30,7 +30,9 @@ export default function Header({icons, handleBurcumb, inputBarEvent, inputBarOut
                             {icons.IoIosSearch}
                         </div>
                         <input type="text" className="input-bar" id="seach-input-bar" placeholder="Search"
-                        onChange={handleSearch}
+                        onFocus={inputBarEvent}
+                        onBlur={inputBarOutEvent}
+                        //onChange={handleSearch}
                         
                         />
                     </div>
