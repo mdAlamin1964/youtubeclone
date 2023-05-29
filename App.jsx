@@ -198,7 +198,9 @@ export default function App() {
    // Video search funtion
    const [searchVideo, setSearchVideo] = React.useState("hill")
     function handleSearchInput(event) {
-        setSearchVideo(event.target.value)
+        if (event.target.value.length > 0) {
+            setSearchVideo(event.target.value)
+        }
     }
 
 
@@ -206,7 +208,6 @@ export default function App() {
     const[videos, setVideos] = React.useState(VideoData.videos)
     
     React.useEffect(() => {
-        const query = searchVideo
         fetch(`https://api.pexels.com/videos/search?query=${searchVideo}&per_page=16`,{
             headers: {
                 Authorization: "aV9niIcdta77XpanS47B88MjS9t8DxbsmCmBpQxu6WbS3kmQBH6Ikzj8"
