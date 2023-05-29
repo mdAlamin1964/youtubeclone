@@ -12,7 +12,7 @@ export default function Header({icons, handleBurcumb, inputBarEvent, inputBarOut
                 <div className="logo" 
                     onClick={handlelogoClick}
                 >
-                    <img className="logo-img" src="./src/assets/logo-dark.png" alt="Youtube Home" />
+                    <img className="logo-img" src="./assets/logo-dark.png" alt="Youtube Home" />
                     <div className="country">BD</div>
                     <div className="logo-tooltip">YouTube Home</div>
                 </div>
