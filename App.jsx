@@ -682,7 +682,7 @@ export default function App() {
 
            <div className="main-header">
                 {/* test */}
-                <input type="text" />
+                <input type="text" onChange={handleSearchInput}/>
                 {
                     mobileMood?
                         <MobileHeader 
