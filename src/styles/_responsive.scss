@@ -301,3 +301,13 @@
         }
     }
 }
+
+
+// copy rights mobile
+@include get-mobile-responsive {
+    
+    .copy-right{
+        transform-origin: 50% -400%;
+        transform: rotate(90deg);
+    }
+}

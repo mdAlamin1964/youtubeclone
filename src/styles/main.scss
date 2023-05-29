@@ -18,3 +18,21 @@ body{
     min-height: 400px;
 }
 
+
+.copy-right{
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    z-index: 11;
+    
+    a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    &:hover{
+    text-align: center;
+        color: $color-youtube-red;
+    }
+    }
+}
+

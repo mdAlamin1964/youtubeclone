@@ -767,6 +767,12 @@ export default function App() {
                                 </div>
                                 }
                     </div>
+
+
+                    {/* My inof */}
+            <div className="copy-right">
+                <a href="https://www.linkedin.com/in/alamin1964/" target='_blank'>Concept & build by MD Alamin</a>
+            </div>
         </div>
     )
 }
