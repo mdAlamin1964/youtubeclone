@@ -384,7 +384,6 @@ export default function App() {
         return day == 1 ? `${day} day ago` : `${day} days ago` 
     }
 
-    console.log(randomDate())
 
 
     //  vidos to the main page
@@ -599,7 +598,6 @@ export default function App() {
     // video regClickFunction
     function regFunc(event){
         let currentItem = event.target.className
-        console.log(playVideo.resulation.length, "resulation")
         if(currentItem.includes("1080p")){
             fixResulation(2, "fhd")
         }
@@ -656,8 +654,25 @@ export default function App() {
         
     }
 
-
-
+    
+    // APi geo location
+    const [location, setlocation] = React.useState({})
+    const [loading, setLoading] = React.useState(true)
+      
+      React.useEffect(() => {
+        const requestOptions = {
+            method: 'GET',
+          };
+        fetch("https://api.geoapify.com/v1/ipinfo?apiKey=219c69941b194d009fd06e59def37cda", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            setlocation(result)
+            setLoading(false)
+        })
+        .catch(error => console.log('error', error));
+      },[])
+      
+    const yourLocation = !loading? location.city.name : ""
 
     return(
         <div className="container">
@@ -675,6 +690,7 @@ export default function App() {
                             handleSettingsClick = {handleSettingsClick}
                             handleMobileSearchBtn= {handleMobileSearchBtn}
                             handlelogoClick = {handleBackbtnPlayVideo}
+                            location = {yourLocation}
 
                             />
                     :
@@ -691,6 +707,7 @@ export default function App() {
 
                             handleInputSearchBtn = {handlehHeaderSearch}
                             handlelogoClick = {handleBackbtnPlayVideo}
+                            location = {yourLocation}
                         />
                         
 
