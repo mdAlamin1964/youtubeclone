@@ -32,7 +32,7 @@ export default function Header({icons, handleBurcumb, inputBarEvent, inputBarOut
                         <input type="text" className="input-bar" id="seach-input-bar" placeholder="Search"
                         onFocus={inputBarEvent}
                         onBlur={inputBarOutEvent}
-                        //onChange={handleSearch}
+                        onChange={handleSearch}
                         
                         />
                     </div>
