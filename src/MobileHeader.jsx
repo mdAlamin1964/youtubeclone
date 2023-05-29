@@ -10,7 +10,7 @@ export default function MobileHeader({icons, handleBurcumb, setttingMenuMood, ha
                     <div className="mobile-logo"
                         onClick={handlelogoClick}
                     >
-                        <img className="mobile-logo-img" src="./src/assets/logo-dark.png" alt="Youtube Home" />
+                        <img className="mobile-logo-img" src="./assets/logo-dark.png" alt="Youtube Home" />
                         <div className="mobile-country">{location}</div>
                         <div className="logo-tooltip">YouTube Home</div>
                     </div>
