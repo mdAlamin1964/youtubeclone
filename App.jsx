@@ -7,7 +7,6 @@ import SideBar from "./src/SideBar"
 import Videos from "./src/Videos"
 import SettingsMenu from "./src/SettingsMenu"
 import MobileHeader from "./src/MobileHeader"
-import { createClient } from "pexels"
 import VideoData from "./src/VideoData"
 import VideoPlay from "./src/VideoPlay"
 import VideoPlayReg from "./src/VideoPlayRez"
@@ -205,20 +204,26 @@ export default function App() {
 
 // Api data images text etc
     const[videos, setVideos] = React.useState(VideoData.videos)
+    
     React.useEffect(() => {
-        const client = createClient("aV9niIcdta77XpanS47B88MjS9t8DxbsmCmBpQxu6WbS3kmQBH6Ikzj8")
         const query = searchVideo
-        client.videos.search({query, per_page: 16}).then(videos => {
-            videos.videos.length > 0? 
-            setVideos(videos.videos) : ""
-        }).catch(error => {
-            console.log(error)
-        })
+        fetch(`https://api.pexels.com/videos/search?query=${searchVideo}&per_page=16`,{
+            headers: {
+                Authorization: "aV9niIcdta77XpanS47B88MjS9t8DxbsmCmBpQxu6WbS3kmQBH6Ikzj8"
+                }
+            })
+            .then(resp => {
+                return resp.json()
+            })
+            .then(data => {
+                setVideos(data.videos)
+            })
+            .catch(error => {
+                console.log(error)
+            })
     },[searchVideo])
 
-
-
-
+    
 
     //Topbar menus
     const[topBarCount, setTopBarCount] = React.useState({
