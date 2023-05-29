@@ -104,25 +104,11 @@ export default function App() {
 
 
 
-    // mobile menu moode
-   const [mobileMood, setMobileMood] = React.useState(false)
-   function setmobile() {
-        if(window.innerWidth < 780){
-            setMobileMood(true)
-        } else {
-            setMobileMood(false)
-        }
-   }
-
-   addEventListener('resize', setmobile)
-
 
 
        // adding class to side bar
        const [sideBarClass, setSideBarClass] = React.useState(defaultSideBarClass)
     
-
-
        function defaultSideBarClass() {
            return window.innerWidth <= 1300? "fixed-bar" : ""
        }
@@ -135,14 +121,30 @@ export default function App() {
            } else {
                setSideBarClass("")
            }
+           console.log("resized 2")
        }
    
-       addEventListener('resize', addClassWhileResize)
+       
 
 
-
-
-
+    // mobile menu moode
+    const [mobileMood, setMobileMood] = React.useState(false)
+    function setmobile() {
+         if(window.innerWidth < 780){
+             setMobileMood(true)
+         } else {
+             setMobileMood(false)
+         }
+         console.log("resized")
+    }
+ 
+    // resize only on desktop device
+    if (window.innerWidth > 779) {
+        addEventListener('resize', setmobile)
+        addEventListener('resize', addClassWhileResize)
+     }
+ 
+ 
 
 
     // sliderbar diable
@@ -207,8 +209,6 @@ export default function App() {
         if (event.target.value.length > 0) {
             setSearchVideo(event.target.value)
         } 
-
-        setMobileMood(false)
 
     }
 
