@@ -377,6 +377,16 @@ export default function App() {
        return time.toString().length > 2? time.toString() : "0:" + time.toString()
     }
 
+
+    // random day genarate
+    function randomDate() {
+        let day = Math.ceil(Math.random() * 31 )
+        return day == 1 ? `${day} day ago` : `${day} days ago` 
+    }
+
+    console.log(randomDate())
+
+
     //  vidos to the main page
     const videoItems = videos.slice(0,8).map((n, i) => {
         let videoThubmnail = n.image
@@ -385,15 +395,15 @@ export default function App() {
         let videoTitle = generateTitle(n.url, 5)
         let channelName = n.user.name
         let views = viewCount(n.height)
-        let upload =  "1 day ago"
+        let upload =  randomDate()
         let resulation = n.video_files
         let index = i
         return (
-            <div className="video-items items" key={nanoid()}>
+            <div className="video-items items" key={nanoid()} 
+                onClick={()=> handlePlayVideo(videoThubmnail, runTime, channelImage, generateTitle(n.url, 10), channelName, views, upload, n.video_files[0].link, true, resulation, index)}
+            >
                 <div className="video-thumbnail">
-                    <img src={videoThubmnail} alt="" 
-                        onClick={()=> handlePlayVideo(videoThubmnail, runTime, channelImage, generateTitle(n.url, 10), channelName, views, upload, n.video_files[0].link, true, resulation, index)}
-                    />
+                    <img src={videoThubmnail} alt="" />
                     <span className="video-run-time">{runTime}</span>
                     <div className="video-top-left">
                         {icons.BsFillVolumeUpFill}| 
@@ -431,7 +441,7 @@ export default function App() {
         let videoTitle = generateTitle(n.url, 5)
         let channelName = n.user.name
         let views = viewCount(n.height)
-        let upload =  "1 day ago"
+        let upload =  randomDate()
         let resulation = n.video_files
         let index = i
 
@@ -462,7 +472,7 @@ export default function App() {
         let videoTitle = generateTitle(n.url, 5)
         let channelName = n.user.name
         let views = viewCount(n.height)
-        let upload =  "1 day ago"
+        let upload =  randomDate()
         let resulation = n.video_files
         let index = i
 

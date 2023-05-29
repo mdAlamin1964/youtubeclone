@@ -675,6 +675,7 @@
   color: #ff0000;
   background-color: #a5a5a5;
   text-transform: uppercase;
+  z-index: 10;
 }
 .playarea .playarea-right .playarea-video-box .icons-on-right .icon-RxGear .videoReg-main {
   position: absolute;
