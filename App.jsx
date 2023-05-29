@@ -208,6 +208,8 @@ export default function App() {
             setSearchVideo(event.target.value)
         } 
 
+        setMobileMood(false)
+
     }
 
 
@@ -681,8 +683,7 @@ export default function App() {
         <div className="container">
 
            <div className="main-header">
-                {/* test */}
-                <input type="text" onChange={handleSearchInput}/>
+
                 {
                     mobileMood?
                         <MobileHeader 
