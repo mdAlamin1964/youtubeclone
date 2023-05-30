@@ -128,7 +128,8 @@ export default function App() {
 
 
     // mobile menu moode
-    const [mobileMood, setMobileMood] = React.useState(false)
+    const [mobileMood, setMobileMood] = React.useState(window.innerWidth < 780? true : false)
+
     function setmobile() {
          if(window.innerWidth < 780){
              setMobileMood(true)
@@ -137,6 +138,7 @@ export default function App() {
          }
          console.log("resized")
     }
+
  
     // resize only on desktop device
     if (window.innerWidth > 779) {
@@ -363,7 +365,7 @@ export default function App() {
             show: false
         })
 
-        setSideBarClass("")
+        mobileMood ? setSideBarClass("fixed-bar") : setSideBarClass("")
         setSearchVideo("feature")
     }
 
@@ -374,7 +376,7 @@ export default function App() {
             show: false
         })
 
-        setSideBarClass("")
+        mobileMood ? setSideBarClass("fixed-bar") : setSideBarClass("")
 
         //geitting input value
         let headerInput =  document.querySelector(".input-bar").value
@@ -572,13 +574,16 @@ export default function App() {
         if (currentItem == "icon-TbRectangle") {
             let playarea = document.querySelector(".playarea")
             let playAreaLeft =  document.querySelector(".playarea-left")
+            let video = document.querySelector(".playarea-video-box .video-play-box video")
 
             if(!playarea.className.includes("wide-video")) {
                 playarea.classList.add("wide-video")
                 playAreaLeft.classList.add("go-none")
+                video.classList.add("mobile-full-height")
             } else {
                 playarea.classList.remove("wide-video")
                 playAreaLeft.classList.remove("go-none")
+                video.classList.remove("mobile-full-height")
             }
 
         }

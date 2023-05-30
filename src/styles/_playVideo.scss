@@ -15,7 +15,7 @@
     column-gap: 10px;
     margin-top: 25px;
     .playarea-right{
-        overflow: hidden;
+        overflow: hidden; 
         .back-btn{
             color: white;
             font-size: 25px;
@@ -36,8 +36,14 @@
             width: 100%;
             position: relative;
 
-            &:hover .icon{
-                display: block;
+            &:hover .vidoe-icons{
+                opacity: 1;
+
+                .icon-RxGear {
+                    .regulation-id{
+                        right: 0px;
+                    }
+                }
             }
             .video-play-box{
                 width: 100% !important;
@@ -55,7 +61,6 @@
                 width: 45px;
                 padding: 0 10px;
                 height: 30px;
-                display: none;
                 cursor: pointer;
                 &:hover{
                     padding: 0 0px;
@@ -68,6 +73,10 @@
                 right: 7px;
             }
 
+            .vidoe-icons{
+                opacity: 0;
+                transition: 0s !important;
+            }
 
             .icons-on-left{
                 @include get-gird-repeat(4, auto);
@@ -121,8 +130,9 @@
                 .icon-RxGear{
                     position: relative;
                     .regulation-id{
+                        transition: 0s;
                         position: absolute;
-                        right: -23px;
+                        right: -35px;
                         top: 0;
                         font-size: 12px;
                         font-weight: 600;

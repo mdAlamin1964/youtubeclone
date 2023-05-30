@@ -449,8 +449,11 @@
   width: 100%;
   position: relative;
 }
-.playarea .playarea-right .playarea-video-box:hover .icon {
-  display: block;
+.playarea .playarea-right .playarea-video-box:hover .vidoe-icons {
+  opacity: 1;
+}
+.playarea .playarea-right .playarea-video-box:hover .vidoe-icons .icon-RxGear .regulation-id {
+  right: 0px;
 }
 .playarea .playarea-right .playarea-video-box .video-play-box {
   width: 100% !important;
@@ -466,7 +469,6 @@
   width: 45px;
   padding: 0 10px;
   height: 30px;
-  display: none;
   cursor: pointer;
 }
 .playarea .playarea-right .playarea-video-box .icon:hover {
@@ -476,6 +478,10 @@
   position: absolute;
   top: 7px;
   right: 7px;
+}
+.playarea .playarea-right .playarea-video-box .vidoe-icons {
+  opacity: 0;
+  transition: 0s !important;
 }
 .playarea .playarea-right .playarea-video-box .icons-on-left, .playarea .playarea-right .playarea-video-box .icons-on-right {
   display: grid;
@@ -667,8 +673,9 @@
   position: relative;
 }
 .playarea .playarea-right .playarea-video-box .icons-on-right .icon-RxGear .regulation-id {
+  transition: 0s;
   position: absolute;
-  right: -23px;
+  right: -35px;
   top: 0;
   font-size: 12px;
   font-weight: 600;
@@ -1375,6 +1382,9 @@
     display: block;
     padding-right: 0;
   }
+  .slide {
+    z-index: 999;
+  }
   .side-bar-fixed {
     display: none;
   }
@@ -1413,8 +1423,30 @@
   }
 }
 @media screen and (max-width: 780px) {
+  .playvideo-main {
+    z-index: 100;
+    position: absolute;
+    width: 100%;
+  }
   .playarea {
     display: block;
+  }
+  .playarea .playarea-right {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    height: inherit;
+    z-index: 99;
+    background-color: #0f0f0f;
+    overflow: visible;
+  }
+  .playarea .playarea-right .back-btn {
+    z-index: 100;
+    top: -40px;
+    left: 0px;
+  }
+  .playarea .playarea-right .playarea-video-box .video-play-box video {
+    max-height: 50vh;
   }
   .playarea .playarea-right .playarea-details {
     margin-bottom: 20px;
@@ -1444,11 +1476,26 @@
   .playarea .playarea-left .playarea-related-item .related-video-thumb img {
     max-height: 240px;
   }
+  .mobile-full-height {
+    max-height: 100vh !important;
+  }
 }
 @media screen and (max-width: 780px) {
   .copy-right {
-    transform-origin: 50% -400%;
+    transform-origin: 46% -415%;
     transform: rotate(90deg);
+  }
+}
+@media screen and (max-width: 780px) {
+  .main-header {
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    background-color: rgba(15, 15, 15, 0.9);
+    padding: 5px 0;
+  }
+  .main-right {
+    margin-top: 60px;
   }
 }
 body {

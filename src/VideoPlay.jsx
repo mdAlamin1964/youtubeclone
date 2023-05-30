@@ -22,7 +22,7 @@ export default function VideoPlay({icons, videoUrl, channelImage, videoTitle, ch
                     <div className="icon-exclamation">
                         {icons.AiFillExclamationCircle}
                     </div>
-                    <div className="icons-on-left">
+                    <div className="icons-on-left vidoe-icons">
                         <div className="icon-BsFillPlayFill"
                             onClick={handlePlayVidoePlay}
                         >  
@@ -70,7 +70,7 @@ export default function VideoPlay({icons, videoUrl, channelImage, videoTitle, ch
                             <span className='start'></span>  <span className="end">{runTime}</span>
                         </div>
                     </div>
-                    <div className="icons-on-right">
+                    <div className="icons-on-right vidoe-icons">
                         <div className="icon-auto-play"
                             onClick={handlePlayVidoePlay}
                         >
